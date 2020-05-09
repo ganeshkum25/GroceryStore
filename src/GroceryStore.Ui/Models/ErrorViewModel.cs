@@ -1,5 +1,3 @@
-using System;
-
 namespace GroceryStore.Ui.Models
 {
     public class ErrorViewModel

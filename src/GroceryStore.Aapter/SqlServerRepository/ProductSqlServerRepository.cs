@@ -1,5 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using GroceryStore.Boundary.Repository;
 using GroceryStore.Sdk;
 using Microsoft.EntityFrameworkCore;
@@ -17,14 +16,14 @@ namespace GroceryStore.Adapter.SqlServerRepository
             _products = dbContext.Products;
         }
 
-        public async Task<Guid> Save(Product product)
+        public async Task<string> Save(Product product)
         {
             await _products.AddAsync(product);
             await _dbContext.SaveChangesAsync();
             return product.ProductId;
         }
 
-        public async Task<Product> Get(Guid productId)
+        public async Task<Product> Get(string productId)
         {
             return await _products.FirstOrDefaultAsync(product => product.ProductId == productId).ConfigureAwait(false);
         }

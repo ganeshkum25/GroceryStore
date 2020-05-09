@@ -1,4 +1,5 @@
-﻿using System;
+﻿using System.Threading.Tasks;
+using GroceryStore.Boundary.Repository;
 using GroceryStore.Sdk;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,9 +9,23 @@ namespace GroceryStore.WebApi.Controllers
     [ApiController]
     public class CategoryController : ControllerBase
     {
-        public Category GetCategory(string categoryId)
+        private CategoryRepository _categoryRepository;
+
+        public CategoryController(CategoryRepository categoryRepository)
         {
-            return null;
+            _categoryRepository = categoryRepository;
+        }
+
+        [HttpPost]
+        public async Task<string> Save(Category category)
+        {
+            return await _categoryRepository.Save(category);
+        }
+
+        [HttpGet]
+        public async Task<Category> Get(string categoryId)
+        {
+            return await _categoryRepository.Get(categoryId);
         }
     }
 }

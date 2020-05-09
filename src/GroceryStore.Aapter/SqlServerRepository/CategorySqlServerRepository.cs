@@ -1,5 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using GroceryStore.Boundary.Repository;
 using GroceryStore.Sdk;
 using Microsoft.EntityFrameworkCore;
@@ -17,14 +16,14 @@ namespace GroceryStore.Adapter.SqlServerRepository
             _categories = dbContext.Categories;
         }
 
-        public async Task<Guid> Save(Category category)
+        public async Task<string> Save(Category category)
         {
             await _categories.AddAsync(category);
             await _dbContext.SaveChangesAsync();
             return category.CategoryId;
         }
 
-        public async Task<Category> Get(Guid categoryId)
+        public async Task<Category> Get(string categoryId)
         {
             return 
                 await _categories.FirstOrDefaultAsync(category => category.CategoryId == categoryId)
