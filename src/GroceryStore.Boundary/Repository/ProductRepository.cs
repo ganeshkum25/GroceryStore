@@ -1,12 +1,13 @@
 ﻿using System;
+using System.Threading.Tasks;
 using GroceryStore.Sdk;
 
 namespace GroceryStore.Boundary.Repository
 {
     public interface ProductRepository
     {
-        Guid Save(Product product);
+        Task<Guid> Save(Product product);
 
-        Product Get(Guid productId);
+        Task<Product> Get(Guid productId);
     }
 }
