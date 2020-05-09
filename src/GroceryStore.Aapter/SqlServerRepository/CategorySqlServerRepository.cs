@@ -20,13 +20,13 @@ namespace GroceryStore.Adapter.SqlServerRepository
         {
             await _categories.AddAsync(category);
             await _dbContext.SaveChangesAsync();
-            return category.CategoryId;
+            return category.ID;
         }
 
         public async Task<Category> Get(string categoryId)
         {
             return 
-                await _categories.FirstOrDefaultAsync(category => category.CategoryId == categoryId)
+                await _categories.FirstOrDefaultAsync(category => category.ID == categoryId)
                 .ConfigureAwait(false);
         }
     }
