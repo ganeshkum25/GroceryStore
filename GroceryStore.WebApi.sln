@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GroceryStore.Sdk", "src\Gro
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GroceryStore.Boundary", "src\GroceryStore.Boundary\GroceryStore.Boundary.csproj", "{23D0BEFB-1104-4ED9-A3B5-FD25AB100B15}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GroceryStore.Aapter", "src\GroceryStore.Aapter\GroceryStore.Aapter.csproj", "{B38580E5-E50F-4B64-8775-43F55EFAF36A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GroceryStore.Adapter", "src\GroceryStore.Aapter\GroceryStore.Adapter.csproj", "{B38580E5-E50F-4B64-8775-43F55EFAF36A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GroceryStore.Ui", "src\GroceryStore.Ui\GroceryStore.Ui.csproj", "{DFF5BBA8-128B-4BED-873A-6233C040B61C}"
 EndProject
