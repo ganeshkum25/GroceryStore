@@ -2,10 +2,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using GroceryStore.Adapter.SqlServerRepository;
+using GroceryStore.Boundary.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -19,6 +22,7 @@ namespace GroceryStore.WebApi
         {
             Configuration = configuration;
         }
+        private const string sqlServer = "SqlServer";
 
         public IConfiguration Configuration { get; }
 
@@ -26,6 +30,14 @@ namespace GroceryStore.WebApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            //services.AddDbContext<SqlServerDbContext>
+            //    (item => item.UseSqlServer(Configuration.GetConnectionString(sqlServer)));
+
+            services.AddDbContext<SqlServerDbContext>(opt =>
+                opt.UseInMemoryDatabase("GroseryStore"));
+            services.AddSingleton<CategoryRepository, CategorySqlServerRepository>();
+            services.AddSingleton<ProductRepository, ProductSqlServerRepository>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
