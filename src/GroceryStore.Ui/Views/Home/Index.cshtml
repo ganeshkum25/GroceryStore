@@ -2,9 +2,32 @@
     ViewData["Title"] = "Products";
 }
 
+@Model
+
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
-
-
+<table>
+    <thead>Products</thead>
+    <tbody>
+    <tr>
+        <td>Product ID</td>
+        <td>Product name</td>
+        <td>Category ID</td>
+        <td>Category name</td>
+    </tr>
+    @{
+        foreach (var product in Model)
+        {
+            <tr>
+                <td>@product.ID</td>
+                <td>@product.Name</td>
+                <td>@product.Category.ID</td>
+                <td>@product.Category.Name</td>
+            </tr>
+        }
+    }
+    </tbody>
+</table>
+<button asp-action="">Next</button>
