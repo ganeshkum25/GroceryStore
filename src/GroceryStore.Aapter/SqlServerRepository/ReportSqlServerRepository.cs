@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using GroceryStore.Boundary.Repository;
 using GroceryStore.Sdk;
@@ -18,7 +19,16 @@ namespace GroceryStore.Adapter.SqlServerRepository
         public Task<IEnumerable<ProductWithCategory>> GetProducts(int pageIndex,
             int elementsPerPage)
         {
-            return null;
+            var productWithCategories = _sqlServerDbContext.Products.GroupJoin(_sqlServerDbContext.Categories, product => product.CategoryId, category => category.ID,
+                (product, category) =>
+                    new ProductWithCategory()
+                    {
+                        ID = product.ID,
+                        Name = product.Name,
+                        CategoryId = product.CategoryId,
+                        Category = category.FirstOrDefault()
+                    });
+            return Task.FromResult<IEnumerable<ProductWithCategory>>(productWithCategories);
         }
     }
 }
