@@ -23,7 +23,15 @@ namespace GroceryStore.WebApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc(p => p.EnableEndpointRouting = false);
+            services.AddMvc(p =>
+            {
+                p.EnableEndpointRouting = false;
+
+                // Whether to consider ACCEPT header from browser, by default false, to return default type
+                //p.RespectBrowserAcceptHeader = true;
+            })
+                // Adds XML serialization Requires 1. Accept 2. AddXmlSerializerFormatters 3. ObjectResult returned from controller
+                .AddXmlSerializerFormatters();
 
             services.AddDbContext<SqlServerDbContext>(opt =>
                 opt.UseInMemoryDatabase("GroceryStore"));
